@@ -33,3 +33,33 @@ class MiniWindow(QDialog):
         self.main_layout.addLayout(self.layout)
         self.main_layout.addWidget(self.button)
         self.setLayout(self.main_layout)
+        
+         def setData(self):
+        res = ""
+        res += "Atributo1: " + self.entry0.text()
+        if self.index == 0:
+            self.topParent.list0 = [self.entry0.text()]
+            aux = self.topParent.list0
+            self.topParent.atribute0.setText(self.topParent.myUpdate(aux))
+        else:
+            self.topParent.list1 = [self.entry0.text()]
+            aux = self.topParent.list1
+            self.topParent.atribute1.setText(self.topParent.myUpdate(aux))
+
+
+class Medida:
+    def __init__(self, name, value, faction):
+        self.name = name
+        self.value = value
+        if faction:  # True es Municipio y False es Patrimonio Familiar
+            self.equi = value * 93239571.62
+        else:
+            self.equi = value * 647496.87
+
+
+class myWindow(QMainWindow):
+
+    def setDarkMode(self, a0, amount=50):
+        dark_mode = QColor(0 + amount, 0 + amount, 0 + amount)
+        a0.setStyleSheet(f"background-color: {dark_mode.name()}; color: white")
+
