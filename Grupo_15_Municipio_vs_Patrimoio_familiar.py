@@ -89,3 +89,41 @@ class myWindow(QMainWindow):
         self.button0.clicked.connect(lambda checked: self.push_reaction(self.alt_window, 0))
         self.button1.clicked.connect(lambda checked: self.push_reaction(self.alt_window, 1))
         self.button2.clicked.connect(self.compare)
+
+        box.addWidget(QLabel("Municipio:"), 0, 0)
+        box.addWidget(self.atribute0, 1, 0)
+        box.addWidget(self.button0, 2, 0)
+        self.equal = QLabel("=")
+        box.addWidget(self.equal, 1, 1)
+        box.addWidget(QLabel("Patrimonio Familiar"), 0, 2)
+        box.addWidget(self.atribute1, 1, 2)
+        box.addWidget(self.button1, 2, 2)
+
+        main_box.addWidget(QLabel("Bienvenidos"))
+        main_box.addLayout(box)
+        main_box.addWidget(self.button2)
+
+        my_window = QWidget()
+        my_window.setLayout(main_box)
+        self.setDarkMode(my_window)
+        self.setCentralWidget(my_window)
+
+    def myUpdate(self, aux: list):
+        res = ""
+        for i in aux:
+            res += str(i) + ", "
+
+        return res
+
+    def compare(self):
+        aux = self.list0
+        muni = Medida("Municipio: ", int(aux[0]), 1)
+        aux = self.list1
+        patrimonio = Medida("Patrimonio Familiar: ", int(aux[0]), 0)
+
+        if muni.equi == patrimonio.equi:
+            self.equal.setText("=")
+        elif muni.equi < patrimonio.equi:
+            self.equal.setText("<")
+        else:
+            self.equal.setText(">")
