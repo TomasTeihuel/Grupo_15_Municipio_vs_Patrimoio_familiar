@@ -39,23 +39,24 @@ class MiniWindow(QDialog):
         
     def setData(self):
         res = ""
-        res += "Atributo1: " + self.entry0.text() + "\n"
-        res += "Atributo2: " + self.entry1.text() + "\n"
-        res += "Atributo3: " + self.entry2.text() + "\n"
-        res += "Atributo4: " + self.entry3.text()
+        res += "Atributo1: " + self.entry0.text()
         if self.index == 0:
-            self.topParent.list0 = [self.entry0.text(), self.entry1.text(), self.entry2.text(), self.entry3.text()]
+            self.topParent.list0 = [self.entry0.text()]
             aux = self.topParent.list0
             self.topParent.atribute0.setText(self.topParent.myUpdate(aux))
         else:
-            self.topParent.list1 = [self.entry0.text(), self.entry1.text(), self.entry2.text(), self.entry3.text()]
+            self.topParent.list1 = [self.entry0.text()]
             aux = self.topParent.list1
             self.topParent.atribute1.setText(self.topParent.myUpdate(aux))
            
-class objText:
-    def __init__(self, aux: list):
-        pass
-
+class Medida:
+    def __init__(self, name, value, faction):
+        self.name = name
+        self.value = value
+        if faction:  # True es Municipio y False es Patrimonio Familiar
+            self.equi = value * 93239571.62
+        else:
+            self.equi = value * 647496.87
 
 class myWindow(QMainWindow):
 
