@@ -62,4 +62,30 @@ class myWindow(QMainWindow):
     def setDarkMode(self, a0, amount=50):
         dark_mode = QColor(0 + amount, 0 + amount, 0 + amount)
         a0.setStyleSheet(f"background-color: {dark_mode.name()}; color: white")
+        
+    def __init__(self):
+        super().__init__()
 
+        # Sección de ventana y configuración general
+        self.setWindowTitle("HeHe")
+        self.setMinimumSize(400, 200)
+
+        # Constructor
+        self.button0 = QPushButton("Agregar Datos")
+        self.button1 = QPushButton("Agregar Datos")
+        self.button2 = QPushButton("Comparar")
+        self.alt_window = MiniWindow(self)
+        self.setDarkMode(self.alt_window)
+
+        # Layout y reacción
+        main_box = QVBoxLayout()
+        box = QGridLayout()
+
+        self.list0 = [0, 0, 0]
+        self.atribute0 = QLabel(self.myUpdate(self.list0))
+        self.list1 = [0, 0, 0]
+        self.atribute1 = QLabel(self.myUpdate(self.list0))
+
+        self.button0.clicked.connect(lambda checked: self.push_reaction(self.alt_window, 0))
+        self.button1.clicked.connect(lambda checked: self.push_reaction(self.alt_window, 1))
+        self.button2.clicked.connect(self.compare)
