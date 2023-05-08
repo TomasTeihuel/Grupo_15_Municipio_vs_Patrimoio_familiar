@@ -127,3 +127,21 @@ class myWindow(QMainWindow):
             self.equal.setText("<")
         else:
             self.equal.setText(">")
+
+    def push_reaction(self, window: MiniWindow, _index: int):
+        window.index = _index
+        window.entry0.setText("0")
+        window.entry1.setText("0")
+        window.entry2.setText("0")
+        window.entry3.setText("0")
+        if window.isVisible():
+            window.hide()
+        else:
+            window.show()
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = myWindow()
+    window.show()  # Obligatorio (dentro del init o fuera)
+    app.exec()
