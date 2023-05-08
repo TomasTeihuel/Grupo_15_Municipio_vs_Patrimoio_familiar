@@ -44,9 +44,14 @@ class MiniWindow(QDialog):
         res += "Atributo3: " + self.entry2.text() + "\n"
         res += "Atributo4: " + self.entry3.text()
         if self.index == 0:
-            self.topParent.atribute0.setText(res)
+            self.topParent.list0 = [self.entry0.text(), self.entry1.text(), self.entry2.text(), self.entry3.text()]
+            aux = self.topParent.list0
+            self.topParent.atribute0.setText(self.topParent.myUpdate(aux))
         else:
-            self.topParent.atribute1.setText(res)
+            self.topParent.list1 = [self.entry0.text(), self.entry1.text(), self.entry2.text(), self.entry3.text()]
+            aux = self.topParent.list1
+            self.topParent.atribute1.setText(self.topParent.myUpdate(aux))
+           
 class objText:
     def __init__(self, aux: list):
         pass
@@ -57,3 +62,26 @@ class myWindow(QMainWindow):
     def setDarkMode(self, a0, amount=50):
         dark_mode = QColor(0 + amount, 0 + amount, 0 + amount)
         a0.setStyleSheet(f"background-color: {dark_mode.name()}; color: white")
+        
+    def __init__(self):
+        super().__init__()
+
+        # Sección de ventana y configuración general
+        self.setWindowTitle("HeHe")
+        self.setMinimumSize(400, 200)
+
+        # Constructor
+        self.button0 = QPushButton("Agregar Datos")
+        self.button1 = QPushButton("Agregar Datos")
+        self.button2 = QPushButton("Comparar")
+        self.alt_window = MiniWindow(self)
+        self.setDarkMode(self.alt_window)
+
+        # Layout y reacción
+        main_box = QVBoxLayout()
+        box = QGridLayout()
+
+        self.list0 = [1, 2, 3]
+        self.atribute0 = QLabel(self.myUpdate(self.list0))
+        self.list1 = [1, 2, 3]
+        self.atribute1 = QLabel(self.myUpdate(self.list0))
