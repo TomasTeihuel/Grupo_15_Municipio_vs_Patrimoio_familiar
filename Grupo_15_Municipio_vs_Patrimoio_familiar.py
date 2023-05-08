@@ -34,7 +34,7 @@ class MiniWindow(QDialog):
         self.main_layout.addWidget(self.button)
         self.setLayout(self.main_layout)
         
-         def setData(self):
+    def setData(self):
         res = ""
         res += "Atributo1: " + self.entry0.text()
         if self.index == 0:
